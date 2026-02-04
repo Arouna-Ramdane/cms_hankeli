@@ -61,19 +61,13 @@
                     </p>
                 </div>
 
-                {{-- Carte dépenses --}}
-                <div class="bg-red-50 border border-red-200 p-6 rounded-2xl shadow-sm">
-                    <h3 class="text-red-600 font-semibold text-lg mb-2">💸 Dépenses</h3>
-                    <p class="text-2xl font-extrabold text-red-600">
-                        {{ number_format($depenses, 0, ',', ' ') }} FCFA
-                    </p>
-                </div>
+                
 
                 {{-- Carte résultat final --}}
                 <div class="bg-blue-50 border border-blue-200 p-6 rounded-2xl shadow-sm">
                     <h3 class="text-blue-700 font-semibold text-lg mb-2">📈 Résultat final</h3>
                     <p class="text-2xl font-extrabold text-blue-700">
-                        {{ number_format($total - $depenses, 0, ',', ' ') }} FCFA
+                        {{ number_format($total, 0, ',', ' ') }} FCFA
                     </p>
                 </div>
 

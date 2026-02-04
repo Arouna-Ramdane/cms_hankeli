@@ -114,6 +114,7 @@ public function store(Request $request)
 
     try {
         DB::beginTransaction();
+        
 
         $commande = Commande::create([
             'dateCommande' => now(),
@@ -121,12 +122,13 @@ public function store(Request $request)
             'user_id' =>  Auth::user()->user_id,
             'client_id' => $request->client_id,
         ]);
-
+        
         $quantites = [];
         foreach ($request->id_prod as $index => $id) {
             $quantites[$id] = ($quantites[$id] ?? 0) + $request->qte[$index];
         }
-
+        
+        
         //dd($prix_achat);
 
         foreach ($request->id_prod as $index => $produit_id) {
@@ -142,7 +144,7 @@ public function store(Request $request)
         DB::rollBack();
         return back()->withErrors(['stock' => "Stock insuffisant pour le produit : {$produit->libelle}"]);
     }
-    // dd($prix_unitaire);
+    //dd($prix_unitaire);
     LigneCommande::create([
         'commande_id' => $commande->commande_id,
         'produit_id' => $produit_id,
@@ -159,7 +161,7 @@ public function store(Request $request)
         return redirect()->route('commandes.index')->with('success', 'Commande enregistrée avec succès.');
     } catch (\Exception $e) {
         DB::rollBack();
-        return back()->withErrors(['error' => 'Une erreur est survenue lors de l’enregistrement de la commande.']);
+        return back()->withErrors(['error' => 'Une erreur est survenue : ' . $e->getMessage()]);
     }
 }
 
@@ -325,13 +327,9 @@ public function store(Request $request)
     $total = DB::table('commandes')
         ->whereDate('created_at', $date)
         ->sum('prix_total');
-
-    $depenses = DB::table('depenses')->whereDate('created_at', $date)
-        ->sum('montant');
 //dd($depenses);
     return view('commandes.total_journalier', [
         'total' => $total,
-        'depenses' => $depenses,
         'date' => $date,
     ]);
 }

@@ -8,9 +8,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\DepenseController;
 use App\Http\Controllers\RecuController;
-
-
-
+use App\Http\Controllers\ApprovisionementController;
 
 
 
@@ -20,6 +18,7 @@ Route::get('/', function () {
 });
 
 
+Route::resource('approvisionnements', ApprovisionementController::class);
 
 Route::resource('users', UserController::class);
 

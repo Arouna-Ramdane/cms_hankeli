@@ -72,7 +72,7 @@ class ClientController extends Controller
         ]);
     });
 
-    return redirect()->route('produits.create');
+    return redirect()->route('commandes/create');
     }
 
     /**

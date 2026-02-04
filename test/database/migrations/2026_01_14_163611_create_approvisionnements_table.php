@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id('appro_id');
             $table->string('qte_appro');
             $table->string('date_appro');
-            $table->integer('produit_id');
+            $table->integer('produit_id')->nullable();
+            $table->integer('stock_avant')->nullable()->after('qte_appro');
+            $table->integer('stock_apres')->nullable()->after('stock_avant');
             $table->timestamps();
             $table->foreign('produit_id')->references('produit_id')->on('produits')->onDelete('set null');
             

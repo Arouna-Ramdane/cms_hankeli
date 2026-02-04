@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c514d8f7b9fc5970bdd94287905ef584",
+    "content-hash": "f08696b5ac6bf93e43e64e35747cef3e",
     "packages": [
         {
             "name": "brick/math",
@@ -1051,6 +1051,76 @@
                 }
             ],
             "time": "2025-08-22T14:27:06+00:00"
+        },
+        {
+            "name": "ismaelw/laratex",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ismaelw/laratex.git",
+                "reference": "958f8ea24cc635cc9451680876c38008a654a40b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ismaelw/laratex/zipball/958f8ea24cc635cc9451680876c38008a654a40b",
+                "reference": "958f8ea24cc635cc9451680876c38008a654a40b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.4|^8.0",
+                "symfony/process": "^3.0|^4.0|^5.0|^6.0|^7.0"
+            },
+            "require-dev": {
+                "ext-zip": "*",
+                "orchestra/testbench": "*",
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "LaraTeX": "Ismaelw\\LaraTeX\\LaraTeXFacade"
+                    },
+                    "providers": [
+                        "Ismaelw\\LaraTeX\\LaraTeXServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ismaelw\\LaraTeX\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ismael Wismann",
+                    "email": "wismann.ismael@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package for creating PDFs in Laravel using LaTeX",
+            "homepage": "https://github.com/ismaelw/laratex",
+            "keywords": [
+                "ismaelw",
+                "laratex"
+            ],
+            "support": {
+                "issues": "https://github.com/ismaelw/laratex/issues",
+                "source": "https://github.com/ismaelw/laratex/tree/v1.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ismaelw",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-09-23T09:42:42+00:00"
         },
         {
             "name": "laravel/framework",

@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class LingneCommande extends Model
+class LigneCommande extends Model
 {
     protected $primaryKey = 'lign_id';
     protected $fillable = ['prix_ligne', 'quantite', 'commande_id', 'produit_id'];
