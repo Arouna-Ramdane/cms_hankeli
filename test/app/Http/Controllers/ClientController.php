@@ -15,15 +15,15 @@ class ClientController extends Controller
      * Display a listing of the resource.
      */
 
-    // public static function middleware(): array
-    // {
-    //     return [
-    //         new Middleware('permission:view-client', only: ['index', 'show']),
-    //         new Middleware('permission:add-client', only: ['create', 'store']),
-    //         new Middleware('permission:edit-client', only: ['edit', 'update']),
-    //         new Middleware('permission:delete-client', only: ['destroy']),
-    //     ];
-    // }
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:view-client', only: ['index', 'show']),
+            new Middleware('permission:add-client', only: ['create', 'store']),
+            new Middleware('permission:edit-client', only: ['edit', 'update']),
+            new Middleware('permission:delete-client', only: ['destroy']),
+        ];
+    }
 
     public function index()
     {
@@ -72,7 +72,7 @@ class ClientController extends Controller
         ]);
     });
 
-    return redirect()->route('commandes/create');
+    return redirect()->route('commandes.create');
     }
 
     /**

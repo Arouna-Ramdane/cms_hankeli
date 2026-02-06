@@ -38,7 +38,7 @@ retour
 
     <thead class="text-gray-900 bg-gray-900 sticky top-0 z-10">
         <tr class="bg-gray-900 text-white text-sm text-left">
-            <th class="p-2">Image</th>
+            
             <th class="p-2">Produit</th>
             <th class="p-2">Prix</th>
             <th class="p-2">Stock</th>
@@ -48,10 +48,7 @@ retour
     <tbody class="text-gray-900" id="produitsBody">
         @foreach ($produits as $produit)
             <tr class="border-t hover:bg-gray-50">
-                <td class="p-2">
-                    <img src="{{ asset('storage/' . ($produit->image ?? 'imageProduit/default.webp')) }}"
-                        alt="{{ $produit->libelle }}" class="w-12 h-12 object-cover">
-                </td>
+                
                 <td class="p-2">{{ $produit->libelle }}</td>
                 <td class="p-2">{{ $produit->prix }} FCFA</td>
                 <td class="p-2">{{ $produit->quantiteStock }}</td>

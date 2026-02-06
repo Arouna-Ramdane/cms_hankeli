@@ -20,15 +20,15 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
 
-    // public static function middleware(): array
-    // {
-    //     return [
-    //         new Middleware('permission:view-user', only: ['index', 'show']),
-    //         new Middleware('permission:add-user', only: ['create', 'store']),
-    //         new Middleware('permission:edit-user', only: ['edit', 'update']),
-    //         new Middleware('permission:delete-user', only: ['destroy']),
-    //     ];
-    // }
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:view-user', only: ['index', 'show']),
+            new Middleware('permission:add-user', only: ['create', 'store']),
+            new Middleware('permission:edit-user', only: ['edit', 'update']),
+            new Middleware('permission:delete-user', only: ['destroy']),
+        ];
+    }
 
     public function index()
     {
@@ -102,13 +102,14 @@ $validat_data_user     = collect($validatedData)->only(['email', 'username', 'pa
             $personne = Personne::create($validat_data_personne);
 
             $user = User::create([
+            'username' => $validat_data_user['username'],
             'email' => $validat_data_user['email'],
             'password' => Hash::make($validat_data_user['password']),
             'personne_id' => $personne->personne_id,
             'profile' => $validat_data_user['profile'],
         ]);
 
-        //$user->assignRole('user');
+        $user->assignRole('user');
 
         }else {
                 $personne = Personne::create($validat_data_personne);
@@ -129,7 +130,7 @@ $validat_data_user     = collect($validatedData)->only(['email', 'username', 'pa
             ]);
             }
 
-            //$user->assignRole('user');
+            $user->assignRole('user');
 
             Client::create([
             'personne_id' => $personne->personne_id,

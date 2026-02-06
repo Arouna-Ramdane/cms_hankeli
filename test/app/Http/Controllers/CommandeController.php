@@ -26,18 +26,17 @@ class CommandeController extends Controller
      * Display a listing of the resource.
      */
 
-    // public static function middleware(): array
-    // {
-    //     return [
-    //         new Middleware('permission:view-commande', only: ['index', 'show', 'all_commande']),
-    //         new Middleware('permission:view-allCommande', only: ['all_commande']),
-    //         new Middleware('permission:add-commande', only: ['create', 'store']),
-    //         new Middleware('permission:add-depense', only: ['create', 'store']),
-    //         new Middleware('permission:edit-commande', only: ['edit', 'update']),
-    //         new Middleware('permission:delete-commande', only: ['destroy']),
-    //         new Middleware('permission:view-totalJournalier', only: ['totalJournalier']),
-    //     ];
-    // }
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:view-commande', only: ['index', 'show', 'all_commande']),
+            new Middleware('permission:view-allCommande', only: ['all_commande']),
+            new Middleware('permission:add-commande', only: ['create', 'store']),
+            new Middleware('permission:add-depense', only: ['create', 'store']),
+            new Middleware('permission:edit-commande', only: ['edit', 'update']),
+            new Middleware('permission:delete-commande', only: ['destroy']),
+        ];
+    }
 
 
     public function index()
@@ -319,20 +318,6 @@ public function store(Request $request)
 }
 
 
-   public function totalJournalier(Request $request)
-{
-
-    $date = $request->input('date') ?? Carbon::today()->toDateString();
-    //dd($date);
-    $total = DB::table('commandes')
-        ->whereDate('created_at', $date)
-        ->sum('prix_total');
-//dd($depenses);
-    return view('commandes.total_journalier', [
-        'total' => $total,
-        'date' => $date,
-    ]);
-}
 
 public function storeDepense(Request $request)
 {
@@ -408,6 +393,8 @@ public function statistiques(Request $request)
     // 2️⃣ Chiffre d'affaires (somme des prix)
     $chiffreAffaire = Commande::whereBetween('dateCommande', [$date_debut, $date_fin])
         ->sum('prix_total');
+
+    
 
     // 3️⃣ Statistiques par PRODUIT
     $produits = DB::table('ligne_commandes')

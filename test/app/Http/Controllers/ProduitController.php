@@ -11,6 +11,17 @@ class ProduitController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:view-produit', only: ['index', 'show']),
+            new Middleware('permission:add-produit', only: ['create', 'store']),
+            new Middleware('permission:edit-produit', only: ['edit', 'update']),
+            new Middleware('permission:delete-produit', only: ['destroy']),
+        ];
+    }
+
     public function index()
     {
         $all = Produit::orderBy('libelle', 'asc')->get();

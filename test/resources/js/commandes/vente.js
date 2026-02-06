@@ -5,16 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     recalculerTotal();
 
     function ajouterPanier(nom, prix, qtd, id) {
-        let le_prix = prompt("Entrer le prix de vente :", prix);
-        if (le_prix === null) {
-            return;
-        }
 
-        let prix_achat = Number(le_prix);
-        if (isNaN(prix_achat) || prix_achat <= 0) {
-            alert("Prix invalide !");
-            return;
-        }
+        let prix_achat = Number(prix);
 
         const panier = document.getElementById('panier');
 
@@ -106,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const filtre = this.value.toLowerCase();
 
             Array.from(produitsBody.children).forEach(row => {
-                const nomProduit = row.querySelectorAll("td")[1].textContent.toLowerCase();
+                const nomProduit = row.querySelectorAll("td")[0].textContent.toLowerCase();
                 row.style.display = nomProduit.includes(filtre) ? "" : "none";
             });
         });

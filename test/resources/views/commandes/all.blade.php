@@ -23,7 +23,13 @@
   <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
 </svg>ACTUALISER
             </button></a>
+
+            <a href="{{route('ImprimeJournalier')}}"><button  class="btn btn-neutral">
+                imprimé
+            </button></a>
             </div>
+
+
 
 
     </div>

@@ -10,7 +10,7 @@
 
     <div class="flex justify-between mb-5">
             <h1>La liste des employers</h1>
-            
+            @can('add-user')
             <div>
             <a href="{{route('users.create')}}"><button  class="btn btn-neutral">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -18,6 +18,8 @@
     </svg>AJOUTER USER
             </button></a>
             </div>
+
+            @endcan
             
 
 
@@ -48,7 +50,7 @@
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->adresse }}</td>
                         <td>
-                             <div class="flex">
+                            <div class="flex">
                                 <div>
                                 <a href="{{route('users.show',$user->user_id)}}">
                                     <button> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
