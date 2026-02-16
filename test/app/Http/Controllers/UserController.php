@@ -14,7 +14,7 @@ use Illuminate\Routing\Controllers\Middleware;
 
 
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
     /**
      * Display a listing of the resource.
@@ -149,9 +149,12 @@ $validat_data_user     = collect($validatedData)->only(['email', 'username', 'pa
      */
     public function show(User $user)
     {
-        $image_personnes = User::where('user_id', $user->user_id)->first();
+        //$image_personnes = User::where('user_id', $user->user_id)->first();
+        $image_personnes=DB::table('personnes')->join('users', 'personnes.personne_id', 'users.personne_id')->select('personnes.*','users.*')->first();
+        //dd($all);
         return view('users.show',[
-            'personne' => $image_personnes
+            'personne' => $image_personnes,
+            
         ]);
     }
 

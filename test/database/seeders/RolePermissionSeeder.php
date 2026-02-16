@@ -45,6 +45,12 @@ class RolePermissionSeeder extends Seeder
             'delete-commande',
 
             // Lignes de commandes
+            'add-approvisionnement',
+            'edit-approvisionnement',
+            'view-approvisionnement',
+            'delete-approvisionnement',
+
+            // Lignes de commandes
             'add-lignecommande',
             'edit-lignecommande',
             'view-lignecommande',

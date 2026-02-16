@@ -20,7 +20,7 @@ use Illuminate\Routing\Controllers\Middleware;
 
 
 
-class CommandeController extends Controller 
+class CommandeController extends Controller implements HasMiddleware
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +32,6 @@ class CommandeController extends Controller
             new Middleware('permission:view-commande', only: ['index', 'show', 'all_commande']),
             new Middleware('permission:view-allCommande', only: ['all_commande']),
             new Middleware('permission:add-commande', only: ['create', 'store']),
-            new Middleware('permission:add-depense', only: ['create', 'store']),
             new Middleware('permission:edit-commande', only: ['edit', 'update']),
             new Middleware('permission:delete-commande', only: ['destroy']),
         ];
@@ -55,7 +54,7 @@ $all = DB::table('commandes')
         'users.*',
         'clients.*'
     )
-    ->whereDate('commandes.dateCommande', now())
+    ->whereDate('commandes.dateCommande', now())->orderBy('commandes.created_at', 'desc')
     ->get();
 
         $totalCommandes = $all->sum('prix_total');
@@ -358,7 +357,7 @@ public function all_commande(Request $request)
         'p2.name as user_name',
         'users.*',
         'clients.*'
-    )->get();
+    )->orderBy('commandes.created_at', 'desc')->get();
         if ($request->date) {
 $all = DB::table('commandes')
     ->join('users', 'commandes.user_id', '=', 'users.user_id')
@@ -372,7 +371,7 @@ $all = DB::table('commandes')
         'p2.name as user_name',
         'users.*',
         'clients.*'
-    )->whereDate('commandes.dateCommande', $request->date)->get();
+    )->whereDate('commandes.dateCommande', $request->date)->orderBy('commandes.created_at', 'desc')->get();
         }
         return view('commandes.all',[
             'commandes'=>$all,

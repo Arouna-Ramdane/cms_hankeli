@@ -23,6 +23,10 @@ class UserSeeder extends Seeder
             
         ]);
 
+        DB::table('clients')->insert([
+            'personne_id' => $user->personne_id,
+        ]);
+
         $user->assignRole('admin');
     }
     

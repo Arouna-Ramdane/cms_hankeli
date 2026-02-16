@@ -2,62 +2,94 @@
 
 @section('content')
 
-<div class="p-6">
-            <a href="{{ route('clients.index') }}"><button  class="btn btn-neutral">
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-</svg>
-retour
-            </button></a>
+<div class="min-h-screen bg-gray-100 p-6">
+    <!-- Back Button -->
+    <div class="mb-6">
+        <a href="{{ route('clients.index') }}">
+            <button class="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+                Retour
+            </button>
+        </a>
+    </div>
+
+    <!-- Form Card -->
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <!-- Header -->
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                </svg>
             </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">Nouveau Client</h1>
+                <p class="text-sm text-gray-500">Enregistrer un nouveau client</p>
+            </div>
+        </div>
 
-    <div class="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-xl p-8 justify-center">
-
-        <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Formulaire d'enregistrement d'un client</h1>
-
-        <form action="{{route('clients.store') }}" method="POST" class="space-y-4">
+        <!-- Form -->
+        <form action="{{route('clients.store') }}" method="POST" class="space-y-5">
             @csrf
 
-            <div>
-                <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="Nom"
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200">
+            <!-- Grid 2 columns -->
+            <div class="grid md:grid-cols-2 gap-5">
+                <!-- Nom -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Nom</label>
+                    <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="Ex: Dupont"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
                     @error('first_name')
-                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                        <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
                     @enderror
-            </div>
+                </div>
 
-            <div>
-                <input type="text" name="name" value="{{ old('name') }}" placeholder="Prenom"
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200">
+                <!-- Prénom -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Prénom</label>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Ex: Jean"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
                     @error('name')
-                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                        <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
                     @enderror
+                </div>
             </div>
 
+            <!-- Contact -->
             <div>
-                <input type="tel" name="contact" value="{{ old('contact') }}" placeholder="contact"
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200">
-                    @error('contact')
-                        <div class="text-red-500 text-sm">{{ $message }}</div>
-                    @enderror
-
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Contact</label>
+                <input type="tel" name="contact" value="{{ old('contact') }}" placeholder="Ex: 90 00 00 00"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
+                @error('contact')
+                    <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
+                @enderror
             </div>
 
+            <!-- Adresse -->
             <div>
-                <input type="text" name="adresse" value="{{ old('adresse') }}" placeholder="Adresse"
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200">
-                    @error('adresse')
-                      <div class="text-red-500 text-sm">{{ $message }}</div>
-                    @enderror
-
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Adresse</label>
+                <input type="text" name="adresse" value="{{ old('adresse') }}" placeholder="Ex: 123 Rue de la Pharmacie"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
+                @error('adresse')
+                    <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div class="flex justify-between pt-4">
+            <!-- Buttons -->
+            <div class="flex gap-3 pt-4">
                 <button type="submit"
-                    class="btn btn-neutral px-6 py-2 rounded-lg hover:bg-gray-900 transition">Enregistrer</button>
-               <button type="reset"
-                    class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition">Annuler</button>
+                    class="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition">
+                    Enregistrer
+                </button>
+                <button type="reset"
+                    class="flex-1 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition">
+                    Annuler
+                </button>
             </div>
         </form>
     </div>
+</div>
+
 @endsection

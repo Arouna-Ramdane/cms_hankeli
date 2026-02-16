@@ -22,15 +22,16 @@ class PersonneSeeder extends Seeder
 
         $personnes = [];
 
-        for ($i = 0; $i < 500; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $personnes[] = [
                 'first_name' => $faker->firstName,
                 'name'       => $faker->lastName,
-                'contact'    => $faker->numerify('########'), // 8 chiffres
+                'contact'    => $faker->numerify('########'), 
                 'adresse'    => $faker->city,
             ];
         }
 
         DB::table('personnes')->insert($personnes);
+        
     }
 }
