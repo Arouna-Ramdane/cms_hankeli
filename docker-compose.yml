@@ -1,0 +1,24 @@
+services:
+  app_hankeli:
+    build: .
+    image: cms_hankeli
+    entrypoint: ["/bin/bash", "/project/entrypoint.sh"]
+    restart: unless-stopped
+    ports:
+      - "8890:8000"
+    volumes:
+      - ./test:/project/
+    depends_on:
+      - db_hankeli
+
+  db_hankeli:
+    image: postgres:15
+    env_file:
+      - .env
+    volumes:
+      - hankeli_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  hankeli_data:
+
